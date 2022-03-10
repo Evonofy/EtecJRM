@@ -1,0 +1,577 @@
+.theme-light {
+    --nav-color: #fff;
+    --body-color: #fff;
+    --orange: #f68b37;
+    --dark-orange: #820024;
+    --font-color: #292b31;
+    --section-bg: #fff;
+  }
+  
+  .theme-dark {
+    --nav-color: #363841;
+    --body-color: #292b31;
+    --orange: #820024;
+    --dark-orange: #f68b37;
+    --font-color: #fff;
+    --section-bg: #000;
+  }
+  
+  .theme-contrast {
+    --nav-color: #fff;
+    --body-color: #464646;
+    --orange: #ff6f00;
+    --dark-orange: #33010f;
+    --menu-bg: #fff;
+    --font-color: #fff;
+    --section-bg: #000;
+}
+  
+  * {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+  }
+  
+  body::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: var(--orange);
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background: var(--dark-orange);
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--body-color);
+    background-image: url('../recursos/images/background-images/etecjrm2.jpg');
+    background-size: 93% 32%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: top;
+  }
+  
+  body strong {
+    font-weight: 700;
+  }
+
+  
+.center {
+  text-align: center;
+}
+
+.context {
+  width: 150px;
+  z-index: 1;
+  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  background: var(--dark-orange);
+  display: none;
+  transition: 0.2s display ease-in;
+}
+
+.context .context-options {
+  list-style: none;
+  padding: 10px 0;
+  z-index: 1;
+}
+
+.context .context-options #active {
+  background: var(--orange);
+}
+
+.context .context-options .context-option {
+  font-weight: 500;
+  z-index: 1;
+  font-size: 14px;
+  padding: 10px 40px 10px 20px;
+  cursor: pointer;
+}
+
+.context .context-options .context-option:hover {
+  background: var(--orange);
+}
+
+button {
+  background: grey;
+  border: none;
+}
+
+button .next {
+  color: green;
+}
+
+button[disabled="false"]:hover .next {
+  color: red;
+  animation: move 0.5s;
+  animation-iteration-count: 2;
+}
+
+@keyframes move {
+  from {
+      transform: translate(0%);
+  }
+  50% {
+      transform: translate(-40%);
+  }
+  to {
+      transform: transform(0%);
+  }
+}
+  
+  header {
+    margin-top: 0 !important;
+    width: 94% !important;
+    margin-bottom: 0 !important;
+    background: transparent;
+  }
+  
+  header, nav, #menu {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    /* border: 2px solid green; */
+  }
+  
+  header nav {
+    width: 100.4%;
+    background: var(--body-color);
+  }
+  
+  header nav .menu {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+  }
+  header nav .acessibilidade {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+header nav .idioma {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+header nav .idioma .top {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    flex-direction: row;
+    margin: 0 10%;
+}
+
+header nav .top .down-arrow {
+    margin: 0 1%;
+    fill: black;
+}
+
+header nav .top .down-arrow:hover {
+    cursor: pointer;
+}
+
+header nav .idioma .dropdown {
+    display: none;
+    margin: 0 7%;
+    flex-direction: column;
+}
+
+header nav .idioma .dropdown .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    margin: 2% 0;
+    background: var(--dark-orange);
+    border-radius: 5px;
+    padding: 5% 0;
+}
+
+header nav .idioma .dropdown .row:hover {
+    background: var(--orange);
+    filter: brightness(80%);
+    cursor: pointer;
+}
+
+header nav .idioma .dropdown #active {
+    background: var(--orange);
+}
+
+header nav .idioma .dropdown .row h1 {
+    font-size: 20px;
+    color: white;
+    margin: 0 1%;
+}
+
+header nav .idioma .dropdown .row h1:hover {
+    text-decoration: underline;
+}
+
+header nav .tema {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+header nav .tema .top {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start; 
+    align-items: center;
+    flex-direction: row;
+    margin: 0 10%;
+}
+
+header nav .tema .top .tema1 {
+    height: 12px;
+    width: 20px;
+    background: var(--dark-orange);
+}
+
+header nav .tema .top .down-arrow {
+    fill: black;
+    margin: 0 1%;
+}
+
+header nav .tema .dropdown {
+    display: none;
+    margin: 0 7%;
+    flex-direction: column;
+}
+
+header nav .tema .dropdown .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    margin: 2% 0;
+    background: var(--dark-orange);
+    border-radius: 5px;
+    padding: 1%;
+}
+
+header nav .tema .dropdown .row:hover {
+    background:var(--orange);
+    filter: brightness(80%);
+    cursor: pointer;
+}
+
+header nav .tema .dropdown #active {
+    background: var(--orange);
+}
+
+header nav .tema .dropdown .row h1 {
+    color: white;
+    font-size: 20px;
+    margin: 0 1%;
+}
+
+header nav .tema .dropdown .row h1:hover {
+    text-decoration: underline;
+}
+
+header nav .tema .dropdown .row .tema2 {
+    height: 12px;
+    width: 20px;
+    background: white;
+}
+
+header nav .tema .dropdown .row .tema3 {
+    height: 12px;
+    width: 20px;
+    background: rgb(43, 43, 43);
+}
+
+header nav .tema .dropdown .row .tema4 {
+    height: 12px;
+    width: 20px;
+    background: #ff6f01;
+}
+  
+  header nav .menu a {
+    padding: 1% 2%;
+    text-decoration: none;
+    color: var(--dark-orange);
+    transition: .3s;
+    font-size: 20px;
+  }
+  
+  header nav .menu a.active {
+    color: var(--dark-orange);
+    background: var(--orange);
+  }
+  
+  header nav .menu a:hover {
+    color: var(--dark-orange);
+    background: var(--orange);
+  }
+  
+  @media screen and (max-width: 805px) {
+    header nav .menu {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  
+  header #menu {
+    width: 60%;
+    margin: 4% 0;
+  }
+  
+   header nav #separador {
+    height: 7px;
+    width: 100%;
+  }
+  
+  header #menu #separador {
+    height: 10px;
+    width: 100%;
+  }
+  
+   header nav .primeiro {
+    background: black;
+    border-bottom: 7px solid var(--dark-orange);
+    margin-bottom: 1%;
+  }
+  
+   header nav .segundo {
+    background: var(--dark-orange);
+    border-bottom: 7px solid black;
+    margin-top: 1%;
+  }
+  
+   header #menu .terceiro {
+    background: var(--dark-orange);
+    border-bottom: 6px solid black;
+  }
+  
+  header #menu .logoEtec {
+    margin-top: 1%;
+    user-select: none;
+    pointer-events: none;
+  }
+  
+  header #menu .logoEtec #layer101,
+  header #menu .logoEtec #layer102 {
+    fill: var(--dark-orange);
+  }
+  
+  header #menu h1.nomeEtec {
+    font-family: 'Roboto', sans-serif;
+    margin-left: 3%;
+    text-align: center;
+    color: white;
+  }
+  
+  header #menu h2.fraseEtec {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: 20px;
+    margin-top: -1%;
+    margin-left: 1%;
+    color: white;
+  }
+  
+  header #menu .icones {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  header #menu .icones a.twitter {
+    padding: 0 1%;
+  }
+  
+  header #menu .icones a {
+    text-decoration: none;
+  }
+  
+  header #menu .icones svg {
+    stroke: var(--dark-orange);
+    padding: 0 5px;
+    cursor: pointer;
+    transition: .3s;
+  }
+  
+  header #menu .icones svg:hover {
+    stroke: var(--orange);
+  }
+  
+  header #menu .quarto {
+    background: var(--dark-orange);
+    border-bottom: 6px solid black;
+  }
+  
+  main {
+    width: 94% !important;
+  }
+  
+  main, section, .nomeSection, .imgLink {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* border: 2px solid blue; */
+    color: var(--font-color);
+  }
+  
+  main section {
+    width: 100%;
+  }
+  
+  main .nomeSection h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+  }
+  
+  main .nomeSection {
+    border-top: 5px solid var(--dark-orange);
+    border-left: 5px solid var(--dark-orange);
+    border-right: 5px solid var(--dark-orange);
+    box-shadow: 0px 11px 0px -5px var(--section-bg);
+    padding: 0 20px;
+    z-index: 3;
+    background: var(--section-bg);
+  }
+  
+  main section {
+    border: 5px solid var(--dark-orange);
+    background: var(--section-bg);
+  }
+  
+main section p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  margin: 3% 6%;
+}
+
+main section .previnir-widget {
+  margin: 6% 0 2% 0;
+  display: flex;
+  width: 80%;
+  height: 30%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(251.35deg, #128C7E, #075E54);
+  border-radius: 35px;
+}
+
+main section .previnir-widget .top {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  margin: 2% 0;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+main section .previnir-widget .top h1 {
+  text-align: center;
+  color: #fff;
+  padding: 0 2%;
+  pointer-events: none;
+  user-select: none;
+}
+
+main section #separador {
+  width: 80%;
+  margin: 2% 0;
+  border: 1px solid var(--dark-orange);
+}
+
+  footer {
+    width: 94%;
+    display: flex;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--dark-orange);
+    border: 5px solid black;
+    /* border: 3px solid red; */
+  }
+  
+  footer section {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    align-items: start;
+    flex-direction: row;
+    justify-content: center;
+    /* border: 3px solid green; */
+  }
+  
+  footer section div {
+    text-align: left;
+    padding: 0 3%;
+    /* border: 3px solid blue; */
+  }
+  
+  footer section .social .icones {
+    padding: 0;
+  }
+  
+  footer section div header {
+    /* border: 3px solid orange; */
+  }
+  
+  footer section div header h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: white;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  footer section div h1,
+  footer section div p,
+  footer section div a {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    padding: 2% 0;
+    margin: 0;
+  }
+  
+  footer section .social .icones a {
+    text-decoration: none;
+  }
+  
+  footer section .social .icones a svg {
+    stroke: var(--orange);
+    cursor: pointer;
+  }
+  
+  footer .direitosAutorais {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  footer .direitosAutorais .quinto {
+    width: 80%;
+    height: 4px;
+    align-self: center;
+    background: black;
+  }
+  
+  footer .direitosAutorais h1 {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+  }

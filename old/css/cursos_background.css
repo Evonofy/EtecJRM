@@ -1,0 +1,11 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--body-color);
+    background-image: url('../recursos/images/background-images/etecjrm4.jpg');
+    background-size: 93% 32%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: top;
+}

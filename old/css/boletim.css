@@ -1,0 +1,34 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--body-color);
+    background-image: url('../recursos/images/background-images/etecjrm3.jpg');
+    background-size: 93% 40%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: top;
+}
+
+main section .cursos .row div h1 a {
+    text-decoration: none;
+    color: #fff;
+}
+
+main section .cursos .row div h1 a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+main section .cursos .row {
+    flex-direction: column;
+}
+
+main section .cursos .row .audio-video, 
+main section .cursos .row .multimedia, 
+main section .cursos .row .comunicacao-visual, 
+main section .cursos .row .tecnico-web, 
+main section .cursos .row .jogos-digitais, 
+main section .cursos .row .marketing {
+    width: 60%;
+}
