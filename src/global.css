@@ -14,14 +14,15 @@ html {
   }
 
   h2 {
-    @apply text-2xl font-bold text-slate-700 md:text-4xl;
+    @apply text-2xl font-bold text-slate-700 md:text-5xl;
   }
 
   h3 {
     @apply text-xl font-semibold text-slate-700 md:text-2xl;
   }
 
-  p {
-    @apply text-base text-slate-500 md:text-xl;
+  p,
+  a {
+    @apply text-base md:text-xl;
   }
 }
