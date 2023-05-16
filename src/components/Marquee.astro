@@ -1,0 +1,91 @@
+---
+// https://codepen.io/geminiatblacksire/pen/PoyRNQX
+import { Image } from "@astrojs/image/components"
+
+export interface Props {
+  data: string[]
+  reverse?: boolean
+}
+
+const { data, reverse = false } = Astro.props
+
+function shuffle(array: any[]) {
+  return array
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
+}
+
+const dataArray = reverse ? shuffle(data).reverse() : shuffle(data)
+---
+
+<div class={`marquee ${reverse ? "marquee--reverse" : ""}`}>
+  <div class="marquee__group">
+    {
+      dataArray.map((image) => (
+        <Image
+          src={image}
+          alt="Imagem de uma empresa parceira"
+          width={156}
+          height={70}
+          quality={50}
+          loading={"lazy"}
+        />
+      ))
+    }
+  </div>
+
+  <div aria-hidden="true" class="marquee__group">
+    {
+      dataArray.map((image) => (
+        <Image
+          src={image}
+          alt="Imagem de uma empresa parceira"
+          width={156}
+          height={70}
+          quality={50}
+          loading={"lazy"}
+        />
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .marquee {
+    width: 100%;
+    margin: auto;
+    --duration: 10s;
+    --gap: 12px;
+
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
+  }
+
+  .marquee__group {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: var(--gap);
+    min-width: 100%;
+    animation: scroll 40s linear infinite;
+  }
+
+  .marquee--reverse .marquee__group {
+    animation-direction: reverse;
+    animation-delay: calc(var(--duration) / -2);
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+</style>

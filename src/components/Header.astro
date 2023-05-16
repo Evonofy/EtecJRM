@@ -1,20 +1,81 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Image } from "@astrojs/image/components"
 
-import Menu from "@/images/icons/menu.svg"
+import Menu from "@/images/icons/Menu.svg"
+
+const pages = [
+  {
+    name: "Cursos",
+    slug: "/cursos",
+  },
+  {
+    name: "Sobre",
+    slug: "/sobre",
+  },
+  {
+    name: "Contato",
+    slug: "/contato",
+  },
+]
 ---
 
 <header class="w-full bg-slate-100">
-  <nav class="max-w-5xl lg:px-6 flex items-center justify-between">
-    <div class="bg-primary-base rounded w-[32px] h-[32px]"></div>
+  <nav
+    class="m-auto flex max-w-5xl items-center justify-between px-6 py-3 lg:px-6"
+  >
+    <div class="h-[32px] w-[32px] rounded bg-primary-base"></div>
 
-    <Image
-      width={32}
-      height={32}
-      src={Menu}
-      alt="Ícone de um menu"
-      loading={"eager"}      
-      fetchpriority={"high"}
-    />
+    <div class="flex items-center gap-6">
+      {
+        pages.map((page) => (
+          <a
+            data-nav
+            href={page.slug}
+            class:list={"hidden md:block text-slate-800 hover:text-slate-500"}
+          >
+            {page.name}
+          </a>
+        ))
+      }
+
+      <button
+        class="hidden rounded bg-primary-base px-6 py-3 font-bold text-slate-100 transition-colors hover:bg-primary-light md:flex"
+      >
+        Espaço do Aluno
+      </button>
+
+      <button class="block md:hidden">
+        <Image
+          width={32}
+          height={32}
+          src={Menu}
+          alt="Ícone de um menu"
+          loading={"eager"}
+          fetchpriority={"high"}
+        />
+      </button>
+    </div>
   </nav>
 </header>
+
+<style>
+  .selected {
+    @apply !text-primary-base;
+  }
+</style>
+
+<script defer>
+  function main() {
+    const pathname = location.pathname
+    /** @type {HTMLAnchorElement[]} */
+    const links = document.querySelectorAll("nav a[data-nav]")
+
+    links.forEach((link) => {
+      if (link.pathname === pathname) {
+        link.classList.add("selected")
+      }
+    })
+  }
+
+  document.addEventListener("DOMContentLoaded", main)
+</script>

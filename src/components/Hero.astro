@@ -1,0 +1,31 @@
+---
+import { Image } from "@astrojs/image/components"
+
+import Hero from "@/images/Hero.jpg"
+---
+
+<section class="flex flex-col">
+  <div class="relative px-6 py-12 lg:px-32 lg:py-20">
+    <Image
+      width={375}
+      height={272}
+      src={Hero}
+      alt="Foto do exterior da ETEC Jornalista Roberto Marinho"
+      class="absolute inset-0 -z-10 m-auto h-full w-full object-cover brightness-[20%]"
+    />
+
+    <section class="m-auto w-full max-w-5xl">
+      <div class="z-20 flex flex-col gap-4 lg:w-[600px]">
+        <p class="font-bold text-accent-base">
+          ETEC Jornalista Roberto Marinho
+        </p>
+
+        <h1 class="text-slate-50">
+          Através Do Conhecimento, Consquista-se O <span
+            class="text-accent-base">Mundo</span
+          >
+        </h1>
+      </div>
+    </section>
+  </div>
+</section>
