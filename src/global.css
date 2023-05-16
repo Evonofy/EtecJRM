@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: system-ui, sans-serif;
+  scroll-behavior: smooth;
+  background-color: #f6f6f6;
+}
+
+@layer base {
+  h1 {
+    @apply text-3xl font-bold text-slate-800 md:text-6xl;
+  }
+
+  h2 {
+    @apply text-2xl font-bold text-slate-700 md:text-4xl;
+  }
+
+  h3 {
+    @apply text-xl font-semibold text-slate-700 md:text-2xl;
+  }
+
+  p {
+    @apply text-base text-slate-500 md:text-xl;
+  }
+}
