@@ -1,0 +1,112 @@
+---
+import Hero from "@/components/Hero.astro"
+import Section from "@/components/Section.astro"
+import Layout from "@/layouts/Layout.astro"
+
+import { Course, courses } from "@/courses.data"
+import Details from "@/components/Details.astro"
+
+const coursesByType: Record<Course["type"], Course[]> = {
+  etim: [],
+  standalone: [],
+}
+
+courses.forEach((course) => {
+  coursesByType[course.type].push(course)
+})
+
+const types: Record<Course["type"], { title: string; description: string }> = {
+  etim: {
+    title: "Cursos Técnicos - ETIM",
+    description:
+      "Confira todos os cursos integrados ao ensino médio modulares disponíveis",
+  },
+  standalone: {
+    title: "Cursos Técnicos",
+    description: "Confira todos os cursos técnicos na ETEC.",
+  },
+}
+
+type CoursesSortedByType = Array<
+  [{ title: string; description: string }, Course[]]
+>
+
+const coursesSortedByType = Object.entries(coursesByType)
+  // @ts-ignore
+  .map(([type, courses]) => [types[type], courses]) as CoursesSortedByType
+---
+
+<Layout title="Cursos | ETEC JRM">
+  <Hero title="Cursos Técnicos" />
+
+  {
+    coursesSortedByType.map(([courseType, courses]) => (
+      <Section background="bg-slate-50">
+        <header class="flex flex-col gap-2">
+          <h2 class="text-slate-900">{courseType.title}</h2>
+          <p class="text-slate-600">{courseType.description}</p>
+        </header>
+
+        <ul class="flex w-full flex-col gap-16">
+          {courses.map((course) => (
+            <li class="flex w-full flex-col gap-6 py-3">
+              <h3 class="text-accent-darkest">
+                {course.fullName || course.name}
+              </h3>
+
+              <div class="flex w-full flex-col items-start gap-6 lg:flex-row lg:gap-8">
+                <Details title="Definição" description={course.definition} />
+
+                {course.jobMarket && (
+                  <Details
+                    title="Mercado De Trabalho"
+                    description={course.jobMarket}
+                  />
+                )}
+
+                {course.prequalification && (
+                  <Details
+                    title="Pré-Requisito"
+                    description={course.prequalification}
+                  />
+                )}
+
+                {course.professionRegister && (
+                  <Details
+                    title="Registro Profissional"
+                    description={course.professionRegister}
+                  />
+                )}
+              </div>
+
+              <div class="flex w-full flex-col items-center justify-center gap-3 lg:flex-row lg:gap-8">
+                {course.areas && (
+                  <a
+                    href={course.areas}
+                    class="flex w-full items-center justify-center rounded-full border border-accent-darkest px-6 py-3 font-bold text-accent-darkest"
+                  >
+                    Áreas De Atuação
+                  </a>
+                )}
+
+                {course.matrix &&
+                  course.matrix.map((m) => (
+                    <a
+                      href={m.url}
+                      class={`flex w-full items-center justify-center rounded-full border  border-accent-darkest px-6 py-3 font-bold text-accent-darkest ${
+                        !course.areas &&
+                        course.matrix?.length === 1 &&
+                        "lg:w-max"
+                      }`}
+                    >
+                      {m.name}
+                    </a>
+                  ))}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </Section>
+    ))
+  }
+</Layout>

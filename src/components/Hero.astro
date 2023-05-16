@@ -2,6 +2,12 @@
 import { Image } from "@astrojs/image/components"
 
 import Hero from "@/images/Hero.jpg"
+
+export interface Props {
+  title: string
+}
+
+const { title } = Astro.props
 ---
 
 <section class="flex flex-col">
@@ -21,9 +27,7 @@ import Hero from "@/images/Hero.jpg"
         </p>
 
         <h1 class="text-slate-50">
-          Através Do Conhecimento, Consquista-se O <span
-            class="text-accent-base">Mundo</span
-          >
+          {title}
         </h1>
       </div>
     </section>

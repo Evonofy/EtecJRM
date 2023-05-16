@@ -6,8 +6,6 @@ import Hero from "@/components/Hero.astro"
 import Section from "@/components/Section.astro"
 import Marquee from "@/components/Marquee.astro"
 
-import { slugify } from "@/slug"
-
 import slider1 from "@/images/slider/1.jpg"
 
 import partner1 from "@/images/partners/1.png"
@@ -26,12 +24,7 @@ import mail from "@/images/icons/mail.svg"
 import building from "@/images/building.png"
 import Input from "@/components/Form/Input.astro"
 
-const half = <TArray extends any>(array: TArray[]) => [
-  array.slice(0, array.length / 2 - 1) as TArray[],
-  array.slice(array.length / 2, -1) as TArray[],
-]
-
-const [partners1, partners2] = half([
+const partners = [
   partner1,
   partner2,
   partner3,
@@ -40,54 +33,9 @@ const [partners1, partners2] = half([
   partner6,
   partner7,
   partner8,
-])
+]
 
-type Course = {
-  name: string
-  type: "etim" | "standalone"
-  description: string
-  slug: string
-}
-
-const courses: Course[] = (
-  [
-    {
-      name: "Informática para Internet",
-      type: "etim",
-      description:
-        "Aprenda tudo sobre o mundo da tecnologia e saia preparado para o mercado de trabalho.",
-    },
-    {
-      name: "Marketing",
-      type: "etim",
-      description:
-        "Aprenda as últimas tendências de marketing, gatilhos mentais, publicidade e propaganda.",
-    },
-    {
-      name: "Comunicação Visual",
-      type: "etim",
-      description: "Se comunique visualmente.",
-    },
-    {
-      name: "Jogos Digitais",
-      type: "etim",
-      description:
-        "Aprenda a utilizar de ferramentas como Unity, GameMaker para criar jogos 2D e 3D.",
-    },
-    {
-      name: "Técnico Em Multimídia",
-      type: "standalone",
-      description:
-        "O técnico em multimídia trabalha com comunicação visual em meios eletrônicos e prepara arquivos digitais para sistemas de comunicação.",
-    },
-    {
-      name: "Técnico em Produção de Áudio e Vídeo",
-      type: "standalone",
-      description:
-        "O técnico em produção de áudio e vídeo capta imagem e som, prepara material audiovisual e colabora na utilização de novas tecnologias.",
-    },
-  ] as const
-).map((course) => ({ ...course, slug: slugify(course.name) }))
+import { courses } from "@/courses.data"
 
 import project1 from "@/images/projects/1.png"
 import project2 from "@/images/projects/2.png"
@@ -111,7 +59,7 @@ const projects = [
 <Layout
   title="Top 10 Melhor Escola Para se Estudar do Estado de São Paulo | ETEC JRM"
 >
-  <Hero />
+  <Hero title="Através Do Conhecimento, Conquista-Se O Mundo" />
 
   <Image
     src={slider1}
@@ -195,25 +143,20 @@ const projects = [
     </div>
   </Section>
 
-  <Section background="bg-orange-50">
-    <header class="flex flex-col gap-2">
-      <h2 class="text-accent-dark">Sobre A ETEC</h2>
-
-      <p class="text-accent-darkest">
-        Fundada em 2011, a Escola Técnica Estadual Jornalista Roberto Marinho já
-        formou mais de 500 alunos em diversas áreas.
-      </p>
-    </header>
-
-    <div class="flex flex-col gap-3">
-      <h3 class="text-slate-800">Patrocinadores e Apoiadores</h3>
-
-      <Marquee data={partners1!} />
-      <Marquee data={partners2!} reverse />
+  <section class="flex w-full flex-col gap-8 bg-orange-50 p-6 lg:py-12">
+    <div class="m-auto flex max-w-5xl flex-col items-start gap-8 lg:gap-16">
+      <header class="flex flex-col gap-2">
+        <h2 class="text-accent-dark">Sobre A ETEC</h2>
+        <p class="text-accent-darkest">
+          Fundada em 2011, a Escola Técnica Estadual Jornalista Roberto Marinho
+          já formou mais de 500 alunos em diversas áreas.
+        </p>
+        <a class="font-bold text-accent-darkest" href="/sobre">Ver mais</a>
+      </header>
     </div>
 
-    <a class="font-bold text-accent-darkest" href="/sobre">Ver mais</a>
-  </Section>
+    <Marquee data={partners} />
+  </section>
 
   <Section background="bg-zin-50">
     <header class="flex flex-col gap-2">

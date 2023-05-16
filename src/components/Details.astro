@@ -1,0 +1,177 @@
+---
+export interface Props {
+  title: string
+  description: string
+}
+
+const { title, description } = Astro.props
+---
+
+<details class="w-full rounded bg-slate-300" style="overflow: overlay;">
+  <summary
+    class="flex w-full cursor-pointer items-center justify-between bg-slate-200 p-3"
+  >
+    <p class="text-accent-darkest">{title}</p>
+
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M2.5 0C1.83696 0 1.20107 0.263392 0.732233 0.732233C0.263392 1.20107 0 1.83696 0 2.5L0 17.5C0 18.163 0.263392 18.7989 0.732233 19.2678C1.20107 19.7366 1.83696 20 2.5 20H17.5C18.163 20 18.7989 19.7366 19.2678 19.2678C19.7366 18.7989 20 18.163 20 17.5V2.5C20 1.83696 19.7366 1.20107 19.2678 0.732233C18.7989 0.263392 18.163 0 17.5 0L2.5 0ZM10.625 5.625V12.8663L13.3075 10.1825C13.3656 10.1244 13.4346 10.0783 13.5105 10.0468C13.5864 10.0154 13.6678 9.99921 13.75 9.99921C13.8322 9.99921 13.9136 10.0154 13.9895 10.0468C14.0654 10.0783 14.1344 10.1244 14.1925 10.1825C14.2506 10.2406 14.2967 10.3096 14.3282 10.3855C14.3596 10.4614 14.3758 10.5428 14.3758 10.625C14.3758 10.7072 14.3596 10.7886 14.3282 10.8645C14.2967 10.9404 14.2506 11.0094 14.1925 11.0675L10.4425 14.8175C10.3844 14.8757 10.3155 14.9219 10.2395 14.9534C10.1636 14.9849 10.0822 15.0011 10 15.0011C9.91779 15.0011 9.83639 14.9849 9.76046 14.9534C9.68453 14.9219 9.61556 14.8757 9.5575 14.8175L5.8075 11.0675C5.74939 11.0094 5.70329 10.9404 5.67185 10.8645C5.6404 10.7886 5.62421 10.7072 5.62421 10.625C5.62421 10.5428 5.6404 10.4614 5.67185 10.3855C5.70329 10.3096 5.74939 10.2406 5.8075 10.1825C5.92486 10.0651 6.08403 9.99921 6.25 9.99921C6.33218 9.99921 6.41356 10.0154 6.48948 10.0468C6.5654 10.0783 6.63439 10.1244 6.6925 10.1825L9.375 12.8663V5.625C9.375 5.45924 9.44085 5.30027 9.55806 5.18306C9.67527 5.06585 9.83424 5 10 5C10.1658 5 10.3247 5.06585 10.4419 5.18306C10.5592 5.30027 10.625 5.45924 10.625 5.625Z"
+        fill="#662B00"></path>
+    </svg>
+  </summary>
+
+  <div class="content px-6 py-3 text-slate-600">
+    <p class="text-inherit">{description}</p>
+  </div>
+</details>
+
+<script>
+  class Accordion {
+    details: HTMLDetailsElement
+    summary: HTMLElement
+    content: HTMLElement
+
+    animation: Animation | null
+
+    isClosing: boolean
+    isExpanding: boolean
+
+    constructor(element: HTMLDetailsElement) {
+      // Store the <details> element
+      this.details = element
+
+      // Store the <summary> element
+      this.summary = element.querySelector("summary")!
+
+      // Store the <div class="content"> element
+      this.content = element.querySelector(".content")!
+
+      // Store the animation object (so we can cancel it if needed)
+      this.animation = null
+
+      // Store if the element is closing
+      this.isClosing = false
+      // Store if the element is expanding
+      this.isExpanding = false
+
+      // Detect user clicks on the summary element
+      this.summary.addEventListener("click", (event) => this.onClick(event))
+    }
+
+    onClick(event: MouseEvent) {
+      // Stop default behaviour from the browser
+      event.preventDefault()
+      // Add an overflow on the <details> to avoid content overflowing
+      this.details.style.overflow = "hidden"
+      // Check if the element is being closed or is already closed
+      if (this.isClosing || !this.details.open) {
+        this.open()
+        // Check if the element is being openned or is already open
+      } else if (this.isExpanding || this.details.open) {
+        this.shrink()
+      }
+    }
+
+    shrink() {
+      // Set the element as "being closed"
+      this.isClosing = true
+
+      // Store the current height of the element
+      const startHeight = `${this.details.offsetHeight}px`
+      // Calculate the height of the summary
+      const endHeight = `${this.summary.offsetHeight}px`
+
+      // If there is already an animation running
+      if (this.animation) {
+        // Cancel the current animation
+        this.animation.cancel()
+      }
+
+      // Start a WAAPI animation
+      this.animation = this.details.animate(
+        {
+          // Set the keyframes from the startHeight to endHeight
+          height: [startHeight, endHeight],
+        },
+        {
+          duration: 250,
+          easing: "ease-out",
+        }
+      )
+
+      // When the animation is complete, call onAnimationFinish()
+      this.animation.onfinish = () => this.onAnimationFinish(false)
+      // If the animation is cancelled, isClosing variable is set to false
+      this.animation.oncancel = () => (this.isClosing = false)
+    }
+
+    open() {
+      // Apply a fixed height on the element
+      this.details.style.height = `${this.details.offsetHeight}px`
+      // Force the [open] attribute on the details element
+      this.details.open = true
+      // Wait for the next frame to call the expand function
+      window.requestAnimationFrame(() => this.expand())
+    }
+
+    expand() {
+      // Set the element as "being expanding"
+      this.isExpanding = true
+      // Get the current fixed height of the element
+      const startHeight = `${this.details.offsetHeight}px`
+      // Calculate the open height of the element (summary height + content height)
+
+      const endHeight = `${
+        this.summary.offsetHeight + this.content.offsetHeight
+      }px`
+
+      // If there is already an animation running
+      if (this.animation) {
+        // Cancel the current animation
+        this.animation.cancel()
+      }
+
+      // Start a WAAPI animation
+      this.animation = this.details.animate(
+        {
+          // Set the keyframes from the startHeight to endHeight
+          height: [startHeight, endHeight],
+        },
+        {
+          duration: 400,
+          easing: "ease-out",
+        }
+      )
+      // When the animation is complete, call onAnimationFinish()
+      this.animation.onfinish = () => this.onAnimationFinish(true)
+      // If the animation is cancelled, isExpanding variable is set to false
+      this.animation.oncancel = () => (this.isExpanding = false)
+    }
+
+    onAnimationFinish(open: boolean) {
+      // Set the open attribute based on the parameter
+      this.details.open = open
+      // Clear the stored animation
+      this.animation = null
+      // Reset isClosing & isExpanding
+      this.isClosing = false
+      this.isExpanding = false
+      // Remove the overflow hidden and the fixed height
+      this.details.style.height = this.details.style.overflow = ""
+    }
+  }
+
+  function main() {
+    const details = document.querySelectorAll<HTMLDetailsElement>("details")!
+
+    details.forEach((d) => new Accordion(d))
+  }
+
+  document.addEventListener("DOMContentLoaded", main)
+</script>
