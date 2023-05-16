@@ -86,14 +86,14 @@ const projects = [
           courses
             .filter((course) => course.type === "etim")
             .map((course) => (
-              <li class="swiper-slide flex !h-auto flex-col items-start justify-between gap-3 rounded bg-red-100 p-6">
+              <li class="swiper-slide flex !h-auto flex-col items-start justify-between gap-3 rounded !bg-red-100 p-6">
                 <h3 class="text-primary-dark">{course.name}</h3>
 
                 <p class="text-left text-slate-600">{course.description}</p>
 
                 <a
                   class="font-bold text-slate-700 transition-colors hover:text-slate-900"
-                  href={`/curso/${course.slug}`}
+                  href={`/cursos`}
                 >
                   Ver Mais
                 </a>
@@ -129,7 +129,7 @@ const projects = [
 
                 <a
                   class="font-bold text-slate-700 transition-colors hover:text-slate-900"
-                  href={`/curso/${course.slug}`}
+                  href={`/cursos`}
                 >
                   Ver Mais
                 </a>
@@ -298,7 +298,7 @@ const projects = [
   }
 
   .swiper-slide {
-    height: max-content !important;
+    height: auto !important;
   }
 
   :root {
