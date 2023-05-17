@@ -1,0 +1,131 @@
+---
+import Hero from "@/components/Hero.astro"
+import Section from "@/components/Section.astro"
+import Layout from "@/layouts/Layout.astro"
+
+import aboutBuilding from "@/images/about-building.png"
+import { Image } from "@astrojs/image/components"
+
+import education from "@/images/icons/about/education.png"
+import business from "@/images/icons/about/business.png"
+import illustration from "@/images/icons/about/illustration.png"
+
+import school from "@/images/icons/about/school.png"
+import developers from "@/images/icons/about/developers.png"
+import phone from "@/images/icons/about/phone.png"
+---
+
+<Layout title="Cursos | ETEC JRM">
+  <Hero title="Sobre Nós" page={{ name: "Sobre Nós", href: "/sobre" }} />
+
+  <section
+    class={"w-full bg-red-50 p-6 flex flex-col gap-3 lg:flex-row lg:!p-0"}
+  >
+    <div
+      class="m-auto flex max-w-5xl flex-col items-start gap-8 lg:w-full lg:gap-16 lg:px-8"
+    >
+      <h2 class="text-primary-dark">
+        A ETEC Jornalista Roberto É Uma Instituição Do Futuro, Preparando Seus
+        Alunos Para O Melhor Que O Mercado De Trabalho Pode Oferecer
+      </h2>
+    </div>
+
+    <Image
+      src={aboutBuilding}
+      alt="Frente da ETEC Jornalista Roberto Marinho"
+      width={375}
+      height={300}
+      class="lg:h-full lg:w-full"
+    />
+  </section>
+
+  <Section background="bg-slate-50">
+    <h2 class="text-slate-500">Nossa História</h2>
+
+    <p class="text-slate-500">
+      A Escola Técnica Estadual Jornalista Roberto Marinho (Etec JRM) foi
+      inaugurada em 1º de agosto de 2011 em São Paulo e região metropolitana.
+      Resultado de uma parceria entre o Governo do Estado de São Paulo, a
+      Fundação Roberto Marinho e a TV Globo, a escola faz parte do Centro
+      Estadual de Educação Tecnológica Paula Souza, a maior instituição de
+      Educação Profissional do país.
+      <br />
+      <br />
+      A Etec JRM oferece dois cursos: Multimídia, com duração de três semestres,
+      e Produção de Áudio e Vídeo, com duração de quatro semestres. Esses cursos
+      foram desenvolvidos por especialistas do Centro Paula Souza em colaboração
+      com profissionais da Globo. O processo seletivo dos estudantes, a contratação
+      de professores, a compra de mobiliário, equipamentos e infraestrutura ficaram
+      a cargo do Paula Souza. A TV Globo construiu o prédio da Etec em um terreno
+      cedido pelo governo estadual e também cuidou do projeto de paisagismo da área.
+      <br />
+      <br />
+      A Etec conta com seis salas de aula para as aulas teóricas e cinco laboratórios
+      de informática, sendo dois deles equipados com 25 computadores Macintosh de
+      última geração. Além disso, está em processo de montagem um estúdio de áudio
+      e vídeo nas dependências da escola, onde ocorrerão as atividades práticas dos
+      cursos.
+    </p>
+  </Section>
+
+  <Section background="bg-orange-50" className="lg:items-center">
+    <div class="flex w-full flex-col gap-3 lg:flex-row lg:gap-8">
+      <div class="flex flex-col gap-3">
+        <h2 class="text-accent-darkest">Nossa Missão</h2>
+        <div class="flex items-center gap-2">
+          <Image src={education} alt="" width={35} height={35} />
+          <p class="text-accent-dark">
+            Promover a educação profissional pública de excelência
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <Image src={business} alt="" width={35} height={35} />
+          <p class="text-accent-dark">
+            Atender às demandas sociais e do mundo do trabalho
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <Image src={illustration} alt="" width={35} height={35} />
+          <p class="text-accent-dark">
+            Focar nas áreas de produção cultural e design
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-3">
+        <h2 class="text-accent-darkest">Nossos Valores</h2>
+        <div class="flex items-center gap-2">
+          <Image src={school} alt="" width={35} height={35} />
+          <p class="text-accent-dark">
+            Consolidar-se como Unidade de Ensino de excelência
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <Image src={developers} alt="" width={35} height={35} />
+          <p class="text-accent-dark">
+            Estimular o desenvolvimento humano e tecnológico
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <Image src={phone} alt="" width={35} height={35} />
+          <p class="text-accent-dark">
+            Utilizar os meios de comunicação em sua mais alta performance e
+            eficiência
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center gap-6 py-16">
+      <h2 class="text-center text-accent-darkest">
+        Venha Se Juntar A Nossa Escola
+      </h2>
+
+      <a
+        href="/cursos"
+        class="w-max rounded bg-primary-base px-6 py-3 font-bold text-slate-50"
+      >
+        Ver Cursos
+      </a>
+    </div>
+  </Section>
+</Layout>

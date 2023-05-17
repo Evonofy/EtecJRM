@@ -6,8 +6,6 @@ import Hero from "@/components/Hero.astro"
 import Section from "@/components/Section.astro"
 import Marquee from "@/components/Marquee.astro"
 
-import slider1 from "@/images/slider/1.jpg"
-
 import partner1 from "@/images/partners/1.png"
 import partner2 from "@/images/partners/2.png"
 import partner3 from "@/images/partners/3.png"
@@ -60,16 +58,6 @@ const projects = [
   title="Top 10 Melhor Escola Para se Estudar do Estado de São Paulo | ETEC JRM"
 >
   <Hero title="Através Do Conhecimento, Conquista-Se O Mundo" />
-
-  <Image
-    src={slider1}
-    alt="Imagem"
-    width={375}
-    height={180}
-    fetchpriority={"high"}
-    loading={"eager"}
-    class="max-h-[170px] w-full object-cover"
-  />
 
   <Section background="bg-red-50 border-b border-primary-dark">
     <header class="flex flex-col gap-2">

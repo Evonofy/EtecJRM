@@ -1,13 +1,19 @@
 ---
 export interface Props {
   background: string
+  className?: string
 }
 
-const { background } = Astro.props
+const { background, className } = Astro.props
 ---
 
 <section class:list={[background ?? "bg-slate-50", "w-full p-6 lg:py-12"]}>
-  <div class="m-auto flex max-w-5xl flex-col items-start gap-8 lg:gap-16">
+  <div
+    class:list={[
+      "m-auto flex max-w-5xl flex-col items-start gap-8 lg:gap-16",
+      className,
+    ]}
+  >
     <slot />
   </div>
 </section>

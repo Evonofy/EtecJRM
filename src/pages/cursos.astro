@@ -37,7 +37,7 @@ const coursesSortedByType = Object.entries(coursesByType)
 ---
 
 <Layout title="Cursos | ETEC JRM">
-  <Hero title="Cursos Técnicos" />
+  <Hero title="Cursos Técnicos" page={{ name: "Cursos", href: "/cursos" }} />
 
   {
     coursesSortedByType.map(([courseType, courses]) => (
