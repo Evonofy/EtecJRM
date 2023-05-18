@@ -15,13 +15,6 @@ import partner6 from "@/images/partners/6.png"
 import partner7 from "@/images/partners/7.png"
 import partner8 from "@/images/partners/8.png"
 
-import map from "@/images/map.png"
-
-import user from "@/images/icons/user.svg"
-import mail from "@/images/icons/mail.svg"
-import building from "@/images/building.png"
-import Input from "@/components/Form/Input.astro"
-
 const partners = [
   partner1,
   partner2,
@@ -176,95 +169,6 @@ const projects = [
         ))
       }
     </ul>
-  </Section>
-
-  <Section background="bg-slate-50">
-    <h2 class="text-primary-darkest">📌 Localização</h2>
-
-    <div class="flex flex-col gap-1">
-      <h3>Avenida Chucri Zaidan, n° 40</h3>
-      <h3>Brooklin Novo</h3>
-      <h3>CEP: 04583-110</h3>
-    </div>
-
-    <Image
-      src={map}
-      alt="Mapa da localização da ETEC"
-      width={327}
-      height={160}
-      loading={"lazy"}
-      fetchpriority={"low"}
-      class="w-full"
-    />
-    <Image
-      src={building}
-      alt="Foto do prédio da ETEC"
-      width={327}
-      height={160}
-      loading={"lazy"}
-      fetchpriority={"low"}
-      class="w-full"
-    />
-
-    <div class="flex flex-col gap-3">
-      <div class="flex items-center gap-1">
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M11 7.99996C11 8.79561 10.6839 9.55867 10.1213 10.1213C9.55871 10.6839 8.79565 11 8 11C7.20435 11 6.44129 10.6839 5.87868 10.1213C5.31607 9.55867 5 8.79561 5 7.99996C5 7.20431 5.31607 6.44125 5.87868 5.87864C6.44129 5.31603 7.20435 4.99996 8 4.99996C8.79565 4.99996 9.55871 5.31603 10.1213 5.87864C10.6839 6.44125 11 7.20431 11 7.99996ZM11 7.99996C11 9.10462 11.6713 9.99996 12.5 9.99996C13.3287 9.99996 14 9.10462 14 7.99996C14 6.61183 13.5187 5.26664 12.638 4.19361C11.7574 3.12058 10.532 2.38609 9.1705 2.11529C7.80903 1.84449 6.3958 2.05413 5.17158 2.7085C3.94736 3.36287 2.98791 4.42148 2.45671 5.70395C1.9255 6.98642 1.85541 8.4134 2.25837 9.74176C2.66133 11.0701 3.51242 12.2177 4.66661 12.9888C5.82081 13.76 7.2067 14.1072 8.58814 13.9711C9.96959 13.835 11.2611 13.2242 12.2427 12.2426M11 7.99996V5.49996"
-            stroke="#F56800"
-            stroke-width="1.5"
-            stroke-linecap="round"></path>
-        </svg>
-        <p>e253dir@cps.sp.gov.br</p>
-      </div>
-      <div class="flex items-center gap-1">
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g clip-path="url(#clip0_3_334)">
-            <path
-              d="M1.5 4.5C1.5 10.0227 5.97733 14.5 11.5 14.5H13C13.3978 14.5 13.7794 14.342 14.0607 14.0607C14.342 13.7794 14.5 13.3978 14.5 13V12.0853C14.5 11.7413 14.266 11.4413 13.932 11.358L10.9833 10.6207C10.69 10.5473 10.382 10.6573 10.2013 10.8987L9.55467 11.7607C9.36667 12.0113 9.042 12.122 8.748 12.014C7.65659 11.6128 6.66544 10.9791 5.84319 10.1568C5.02094 9.33456 4.38725 8.34341 3.986 7.252C3.878 6.958 3.98867 6.63333 4.23933 6.44533L5.10133 5.79867C5.34333 5.618 5.45267 5.30933 5.37933 5.01667L4.642 2.068C4.60143 1.9058 4.50781 1.7618 4.37604 1.65889C4.24426 1.55598 4.08187 1.50006 3.91467 1.5H3C2.60218 1.5 2.22064 1.65804 1.93934 1.93934C1.65804 2.22064 1.5 2.60218 1.5 3V4.5Z"
-              stroke="#F56800"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </g>
-          <defs>
-            <clipPath id="clip0_3_334">
-              <rect width="16" height="16" fill="white"></rect>
-            </clipPath>
-          </defs>
-        </svg>
-        <p>5103-2085</p>
-      </div>
-    </div>
-
-    <form class="flex flex-col gap-2 self-center">
-      <h2>Entre Em Contato</h2>
-
-      <Input name="name" placeholder="Nome" leftIcon={user} />
-
-      <Input name="email" placeholder="E-mail" leftIcon={mail} />
-
-      <Input name="reason" placeholder="Motivo do contato" textarea />
-
-      <button
-        type="submit"
-        class="rounded bg-accent-base px-6 py-3 font-bold text-slate-50 hover:bg-accent-light"
-      >
-        Entrar em contato
-      </button>
-    </form>
   </Section>
 </Layout>
 

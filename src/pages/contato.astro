@@ -1,0 +1,115 @@
+---
+import Hero from "@/components/Hero.astro"
+import Section from "@/components/Section.astro"
+import Layout from "@/layouts/Layout.astro"
+
+import aboutBuilding from "@/images/about-building.png"
+import map from "@/images/map.png"
+import { Image } from "@astrojs/image/components"
+import Input from "@/components/Form/Input.astro"
+
+import at from "@/images/icons/mail.svg"
+
+const address = {
+  street: "Avenida Chucri Zaidan, n° 40",
+  bairro: "Brooklin Novo",
+  cep: "04583-110",
+}
+---
+
+<Layout title="Contato | ETEC JRM">
+  <Hero title="Contato" page={{ name: "Contato", href: "/contato" }} />
+
+  <Section background="bg-slate-50" className="!items-center lg:!items-start">
+    <h2 class="text-accent-darkest">Localização</h2>
+
+    <div class="flex flex-col items-center lg:items-start">
+      <p class="text-slate lg:text-accent-dark">{address.street}</p>
+      <p class="text-slate lg:text-accent-dark">{address.bairro}</p>
+      <p class="text-slate lg:text-accent-dark">CEP: {address.cep}</p>
+    </div>
+
+    <div class="flex w-full flex-col lg:flex-row">
+      <Image
+        src={aboutBuilding}
+        alt="Frente da ETEC Jornalista Roberto Marinho"
+        width={375}
+        height={300}
+        class="lg:h-full lg:w-full"
+      />
+
+      <Image
+        src={map}
+        alt="Mapa da região do morumbi"
+        width={375}
+        height={300}
+        class="lg:h-full lg:w-full"
+      />
+    </div>
+
+    <Section background="bg-slate-50" className="!items-center">
+      <h2 class="text-accent-darkest">Contato</h2>
+
+      <div
+        class="flex w-full flex-col gap-3 lg:w-[640px] lg:flex-row lg:items-center"
+      >
+        <div
+          class="flex items-center gap-2 lg:w-full lg:justify-center lg:rounded-2xl lg:border-2 lg:border-accent-darkest lg:p-3"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11 7.99996C11 8.79561 10.6839 9.55867 10.1213 10.1213C9.55871 10.6839 8.79565 11 8 11C7.20435 11 6.44129 10.6839 5.87868 10.1213C5.31607 9.55867 5 8.79561 5 7.99996C5 7.20431 5.31607 6.44125 5.87868 5.87864C6.44129 5.31603 7.20435 4.99996 8 4.99996C8.79565 4.99996 9.55871 5.31603 10.1213 5.87864C10.6839 6.44125 11 7.20431 11 7.99996ZM11 7.99996C11 9.10462 11.6713 9.99996 12.5 9.99996C13.3287 9.99996 14 9.10462 14 7.99996C14 6.61183 13.5187 5.26664 12.638 4.19361C11.7574 3.12058 10.532 2.38609 9.1705 2.11529C7.80903 1.84449 6.3958 2.05413 5.17158 2.7085C3.94736 3.36287 2.98791 4.42148 2.45671 5.70395C1.9255 6.98642 1.85541 8.4134 2.25837 9.74176C2.66133 11.0701 3.51242 12.2177 4.66661 12.9888C5.82081 13.76 7.2067 14.1072 8.58814 13.9711C9.96959 13.835 11.2611 13.2242 12.2427 12.2426M11 7.99996V5.49996"
+              stroke="#F56800"
+              stroke-width="1.5"
+              stroke-linecap="round"></path>
+          </svg>
+          <p class="text-slate-600 lg:text-accent-dark">
+            e253dir@cps.sp.gov.br
+          </p>
+        </div>
+        <div
+          class="flex items-center gap-2 lg:w-full lg:justify-center lg:rounded-2xl lg:border-2 lg:border-accent-darkest lg:p-3"
+        >
+          <svg
+            width="17"
+            height="16"
+            viewBox="0 0 17 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2 4.5C2 10.0227 6.47733 14.5 12 14.5H13.5C13.8978 14.5 14.2794 14.342 14.5607 14.0607C14.842 13.7794 15 13.3978 15 13V12.0853C15 11.7413 14.766 11.4413 14.432 11.358L11.4833 10.6207C11.19 10.5473 10.882 10.6573 10.7013 10.8987L10.0547 11.7607C9.86667 12.0113 9.542 12.122 9.248 12.014C8.15659 11.6128 7.16544 10.9791 6.34319 10.1568C5.52094 9.33456 4.88725 8.34341 4.486 7.252C4.378 6.958 4.48867 6.63333 4.73933 6.44533L5.60133 5.79867C5.84333 5.618 5.95267 5.30933 5.87933 5.01667L5.142 2.068C5.10143 1.9058 5.00781 1.7618 4.87604 1.65889C4.74426 1.55598 4.58187 1.50006 4.41467 1.5H3.5C3.10218 1.5 2.72064 1.65804 2.43934 1.93934C2.15804 2.22064 2 2.60218 2 3V4.5Z"
+              stroke="#F56800"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+          <p class="text-slate-600 lg:text-accent-dark">5103-2085</p>
+        </div>
+      </div>
+    </Section>
+
+    <Section background="bg-slate-50" className="lg:!items-center">
+      <h2 class="text-accent-darkest">Fale Conosco</h2>
+
+      <form class="flex w-full flex-col gap-3 lg:w-[640px]">
+        <Input name="name" placeholder="Nome" />
+        <Input name="email" placeholder="e-mail" leftIcon={at} />
+        <Input textarea name="reason" placeholder="Motivo do contato" />
+
+        <button
+          class="w-full bg-accent-base px-6 py-3 font-bold text-slate-50"
+          type="submit"
+        >
+          Entrar Em Contato
+        </button>
+      </form>
+    </Section>
+  </Section>
+</Layout>

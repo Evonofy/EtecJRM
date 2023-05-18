@@ -1,0 +1,284 @@
+---
+import Hero from "@/components/Hero.astro"
+import Section from "@/components/Section.astro"
+import Layout from "@/layouts/Layout.astro"
+
+import { Image } from "@astrojs/image/components"
+
+import bookOpen from "@/images/book-open.png"
+import bookClosed from "@/images/book-closed.png"
+import { Classes } from "@/components/Islands/Classes"
+
+import { classes } from "@/classes.data"
+
+const links = [
+  {
+    name: "NSA",
+    href: "https://www.google.com",
+  },
+  {
+    name: "Secretaria",
+    href: "https://www.google.com",
+  },
+  {
+    name: "Laboratório",
+    href: "https://www.google.com",
+  },
+  {
+    name: "Projetos",
+    href: "https://www.google.com",
+  },
+  {
+    name: "Estágios",
+    href: "https://www.google.com",
+  },
+  {
+    name: "Estúdio",
+    href: "https://www.google.com",
+  },
+  {
+    name: "Instruções - SIGA",
+    href: "https://www.google.com",
+  },
+  {
+    name: "Calendário Escolar",
+    href: "https://www.google.com",
+  },
+]
+---
+
+<Layout title="Espaço do Aluno | ETEC JRM">
+  <Hero
+    title="Espaço do Aluno"
+    page={{ name: "Espaço do Aluno", href: "/aluno" }}
+  />
+
+  <Section>
+    <h2 class="text-accent-darkest">Links Úteis</h2>
+
+    <ul class="flex w-full flex-row flex-wrap justify-center gap-4">
+      {
+        links.map((link) => (
+          <li class="w-[156px] lg:w-[220px]">
+            <a
+              class="group flex flex-col items-center justify-center gap-1 rounded bg-orange-100 p-2.5 transition-colors hover:bg-accent-base"
+              href={link.href}
+            >
+              <Image
+                src={bookClosed}
+                alt="Livro Fechado"
+                width={50}
+                height={50}
+                class="group-hover:hidden"
+              />
+
+              <Image
+                src={bookOpen}
+                alt="Livro aberto"
+                width={50}
+                height={50}
+                class="hidden group-hover:block"
+              />
+
+              <div class="h-[5px] w-[5px] rounded-full bg-accent-darkest" />
+
+              <p class="text-accent-darkest">{link.name}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+
+  <Classes {classes} client:load />
+
+  <Section>
+    <h2 class="text-accent-darkest">
+      E-Mail Institucional - Assuntos Frequentes
+    </h2>
+
+    <div class="flex w-full flex-col gap-2">
+      <h3 class="text-accent-darkest">
+        Como Acessar Meu E-Mail Institucional?
+      </h3>
+
+      <p class="text-accent-dark">
+        1. Entre em ETEC.SP.GOV.BR<br />
+        2. Selecione a opção e-mail institucional.<br />
+        3. Clique em “Acesso Ao E-Mail”.
+      </p>
+    </div>
+
+    <div class="flex w-full flex-col gap-2">
+      <h3 class="text-accent-darkest">Não Recebi Meu E-Mail @ETEC</h3>
+
+      <p class="text-accent-dark">
+        Acesse o SIGA e lá consulte o seu e-mail institucional ou encaminhe uma
+        mensagem para secretaria (e253acad@cps.sp.gov.br) solicitando seu
+        endereço de e-mail @etec.
+      </p>
+    </div>
+
+    <div class="flex w-full flex-col gap-2">
+      <h3 class="text-accent-darkest">
+        Não Lembro Minha Senha Ou Tenho Problemas Com Ela
+      </h3>
+
+      <p class="text-accent-dark">
+        Acesse o link - <a
+          class="underline hover:text-accent-darkest"
+          href="https://sysmail.cps.sp.gov.br/web/reset-email-password/request-reset-password"
+        >
+          Redefinir senha
+        </a> e informe seu número de CPF e o endereço do e-mail institucional @etec.sp.gov.br.
+        Uma mensagem será enviada para o seu e-mail particular cadastrado no ato
+        da matrícula para redefinir a senha.
+      </p>
+    </div>
+  </Section>
+</Layout>
+
+<script>
+  class Accordion {
+    details: HTMLDetailsElement
+    summary: HTMLElement
+    content: HTMLElement
+
+    animation: Animation | null
+
+    isClosing: boolean
+    isExpanding: boolean
+
+    constructor(element: HTMLDetailsElement) {
+      // Store the <details> element
+      this.details = element
+
+      // Store the <summary> element
+      this.summary = element.querySelector("summary")!
+
+      // Store the <div class="content"> element
+      this.content = element.querySelector(".content")!
+
+      // Store the animation object (so we can cancel it if needed)
+      this.animation = null
+
+      // Store if the element is closing
+      this.isClosing = false
+      // Store if the element is expanding
+      this.isExpanding = false
+
+      // Detect user clicks on the summary element
+      this.summary.addEventListener("click", (event) => this.onClick(event))
+    }
+
+    onClick(event: MouseEvent) {
+      // Stop default behaviour from the browser
+      event.preventDefault()
+      // Add an overflow on the <details> to avoid content overflowing
+      this.details.style.overflow = "hidden"
+      // Check if the element is being closed or is already closed
+      if (this.isClosing || !this.details.open) {
+        this.open()
+        // Check if the element is being openned or is already open
+      } else if (this.isExpanding || this.details.open) {
+        this.shrink()
+      }
+    }
+
+    shrink() {
+      // Set the element as "being closed"
+      this.isClosing = true
+
+      // Store the current height of the element
+      const startHeight = `${this.details.offsetHeight}px`
+      // Calculate the height of the summary
+      const endHeight = `${this.summary.offsetHeight}px`
+
+      // If there is already an animation running
+      if (this.animation) {
+        // Cancel the current animation
+        this.animation.cancel()
+      }
+
+      // Start a WAAPI animation
+      this.animation = this.details.animate(
+        {
+          // Set the keyframes from the startHeight to endHeight
+          height: [startHeight, endHeight],
+        },
+        {
+          duration: 250,
+          easing: "ease-out",
+        }
+      )
+
+      // When the animation is complete, call onAnimationFinish()
+      this.animation.onfinish = () => this.onAnimationFinish(false)
+      // If the animation is cancelled, isClosing variable is set to false
+      this.animation.oncancel = () => (this.isClosing = false)
+    }
+
+    open() {
+      // Apply a fixed height on the element
+      this.details.style.height = `${this.details.offsetHeight}px`
+      // Force the [open] attribute on the details element
+      this.details.open = true
+      // Wait for the next frame to call the expand function
+      window.requestAnimationFrame(() => this.expand())
+    }
+
+    expand() {
+      // Set the element as "being expanding"
+      this.isExpanding = true
+      // Get the current fixed height of the element
+      const startHeight = `${this.details.offsetHeight}px`
+      // Calculate the open height of the element (summary height + content height)
+
+      const endHeight = `${
+        this.summary.offsetHeight + this.content.offsetHeight
+      }px`
+
+      // If there is already an animation running
+      if (this.animation) {
+        // Cancel the current animation
+        this.animation.cancel()
+      }
+
+      // Start a WAAPI animation
+      this.animation = this.details.animate(
+        {
+          // Set the keyframes from the startHeight to endHeight
+          height: [startHeight, endHeight],
+        },
+        {
+          duration: 400,
+          easing: "ease-out",
+        }
+      )
+      // When the animation is complete, call onAnimationFinish()
+      this.animation.onfinish = () => this.onAnimationFinish(true)
+      // If the animation is cancelled, isExpanding variable is set to false
+      this.animation.oncancel = () => (this.isExpanding = false)
+    }
+
+    onAnimationFinish(open: boolean) {
+      // Set the open attribute based on the parameter
+      this.details.open = open
+      // Clear the stored animation
+      this.animation = null
+      // Reset isClosing & isExpanding
+      this.isClosing = false
+      this.isExpanding = false
+      // Remove the overflow hidden and the fixed height
+      this.details.style.height = this.details.style.overflow = ""
+    }
+  }
+
+  function main() {
+    const details = document.querySelectorAll<HTMLDetailsElement>("details")!
+
+    details.forEach((d) => new Accordion(d))
+  }
+
+  document.addEventListener("DOMContentLoaded", main)
+</script>
